@@ -17,7 +17,6 @@ import bodys from './component/bodys.vue'
     flex-direction: column;
     .login-box{
         min-width:480px;
-        // padding-top:100px;
         margin:auto;
     }
 }

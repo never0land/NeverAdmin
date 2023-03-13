@@ -44,10 +44,12 @@
 </style>
 <script setup>
 import {rules} from '../db'
+import { useRoute } from 'vue-router';
 import titles from '../../../components/titles.vue'
 import { ElButton, ElForm, ElFormItem, ElInput,ElCard } from "element-plus";
 import { reactive, ref } from "vue";
 const labelPosition = ref('left')
+const router = useRoute()
 const dataStore = reactive({
   userName: "",
   userPWD: "",
@@ -60,9 +62,9 @@ const ruleFormRef = ref();
 const submits = async (formel) => {
   if (!formel) return;
   else {
-    await formel.validate((valid, fields)=>{
+    await formel.validate((valid)=>{
         if(valid){
-            console.log(1,fields,valid,rules(Object.keys(dataStore)))
+            router.push('/dasbord')
         }
     })
   }
