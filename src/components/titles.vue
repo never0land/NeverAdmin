@@ -9,5 +9,4 @@ const prop = defineProps({
     default:()=>{}
   },
 });
-console.log(prop)
 </script>

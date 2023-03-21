@@ -9,13 +9,39 @@ const routes = [
   {
     path:'/home',
     name:'baseHome',
-    component:()=>import('../views/layout/Index.vue')
+    component:()=>import("../views/layout/Index.vue"),
+    meta:{
+      title:'控制台',
+      hiden:false
+    }
+  },
+  {
+    path:'/renderExcel',
+    name:'Excel',
+    component:()=>import("../views/layout/Index.vue"),
+    hidden:false,
+    children:[
+      {
+        path:'/excel',
+        name:'ex',
+        hidden:false,
+        component:()=>import('../views/Excel/Index.vue')
+      }
+    ],
+    meta:{
+      title:'生成预算',
+      // hiden:false
+    }
   },
 
   {
     path: "/login",
     name: "Login",
     component: () => import("../views/account/login.vue"),
+    meta:{
+      title:'登录',
+      hiden:true
+    }
   },
   // {
   //   path: "/about",

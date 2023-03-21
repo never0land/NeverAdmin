@@ -12,3 +12,12 @@ export const rules = function (Arr) {
     });
     return rules
 };
+
+export const pageSetting = reactive({
+    btn:{
+        title:'登录',
+        loading:false,
+        disabled:false,
+        className:''
+    }
+}) 

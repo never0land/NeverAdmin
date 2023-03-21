@@ -1,5 +1,4 @@
 <template>
-
     <div class="headerBox"></div>
 </template>
 <style scoped>
