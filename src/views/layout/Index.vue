@@ -1,6 +1,7 @@
 <script setup>
 import { ElMain,ElHeader,ElAside,ElContainer } from 'element-plus';
 import NeverAside from './component/AsideNever.vue'
+import MainNever from './component/MainNever.vue';
 </script>
 <template>
     <div>
@@ -8,7 +9,7 @@ import NeverAside from './component/AsideNever.vue'
             <ElAside id="aside" width="250px"><NeverAside /></ElAside>
             <ElContainer>
                 <ElHeader id="headers" height="75px">1</ElHeader>
-                <ElMain id="mains"></ElMain>
+                <ElMain id="mains"><MainNever/></ElMain>
             </ElContainer>
         </ElContainer>
     </div>

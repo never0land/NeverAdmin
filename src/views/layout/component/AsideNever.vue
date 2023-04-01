@@ -1,4 +1,4 @@
-<!-- <style scoped lang="scss">
+<style scoped lang="scss">
 .logo{
   margin:20px auto;
   border-bottom:1px solid #2d4153;
@@ -9,23 +9,23 @@
     min-height: 1px;
   }
 }
-</style> -->
+</style>
 <script setup>
 import { useRouter } from "vue-router";
-import { ElMenu, ElMenuItem } from "element-plus";
-import {reactive} from 'vue'
+import { ElMenu, ElMenuItem,ElSubMenu } from "element-plus";
+// import {reactive} from 'vue'
 const { options } = useRouter();
-let routerList = reactive([])
-options.routes.forEach(item=>{
-    if(item.hidden===false){
-        routerList.push(item)
-    }
-});
+const routers = options.routes
+// let routerList = reactive([])
+// options.routes.forEach(item=>{
+//     if(item.hidden===false){
+//         routerList.push(item)
+//     }
+// });
 </script>
 <template>
   <div>
     <div >
-      <!-- <h1 class="logo"> -->
         <el-avatar class="logo">鸿成装饰</el-avatar>
         <!-- <ElImage
         :fit="scale-down"
@@ -38,17 +38,31 @@ options.routes.forEach(item=>{
       active-text-color="#ffd04b"
       :router="true"
     >
-      <template v-for="item in routerList" :key="item.path">  
-        <div v-if="item.children">
-        <ElMenuItem :index="item.children[0].path">
-        {{ item.meta&&item.meta.title }}
+      <template v-for="item in routers" :key="item.path">  
+        <template v-if="!item.hidden">
+          <ElMenuItem :index="item.path" v-if="!item.children">
+          <template #title>
+            {{ item.meta&&item.meta.title }}
+          </template>
         </ElMenuItem>
-        </div>
-        <div v-else>
+        <ElSubMenu v-else :index="item.path">
+          <template #title>
+            {{ item.meta&&item.meta.title }}
+          </template>
+          <template v-for="child in item.children" :key="child">
+          <ElMenuItem v-if="!child.hidden" :index="child.path">
+            {{ child.meta&&child.meta.title }}
+          </ElMenuItem>
+          </template>
+
+        </ElSubMenu>
+        </template>
+
+        <!-- <div v-else>
             <ElMenuItem :index="item.path">
             {{ item.meta&&item.meta.title }}
             </ElMenuItem>
-        </div>
+        </div> -->
 
    
                 <!-- <ElMenuItem :index="item.children.path" v-if=" item.children&&item.meta&&!item.meta.hiden">

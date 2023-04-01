@@ -3,7 +3,8 @@
         <ElButton :loading="subConfig.loading" 
         :disabled="subConfig.disabled"
         :class="subConfig.className"
-        @click="submits" 
+        @click="submits"
+        @keydown.enter="submits"
         >{{ props.config.title }}</ElButton>
     </div>
 </template>

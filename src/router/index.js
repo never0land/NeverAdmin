@@ -5,14 +5,36 @@ const routes = [
     path: "/",
     name: "Home",
     redirect: "Login",
+    hidden:true
   },
   {
     path:'/home',
     name:'baseHome',
     component:()=>import("../views/layout/Index.vue"),
+    hidden:true,
     meta:{
-      title:'控制台',
-      hiden:false
+      title:'控制台'
+    }
+  },
+  {
+    path:'/renderentry',
+    name:'renderentry',
+    component:()=>import("../views/layout/Index.vue"),
+    // redirect:'/renderentry/entry',
+    // hidden:false,
+    children:[
+      {
+        path:'/entry',
+        name:'entry',
+        // hidden:false,
+        component:()=>import('../views/entry/Index.vue'),
+        meta:{
+          title:'添加词条列表'
+        }
+      }
+    ],
+    meta:{
+      title:'预算词条',
     }
   },
   {
@@ -25,12 +47,14 @@ const routes = [
         path:'/excel',
         name:'ex',
         hidden:false,
-        component:()=>import('../views/Excel/Index.vue')
+        component:()=>import('../views/Excel/Index.vue'),
+        meta:{
+          title:'生成预算'
+        }
       }
     ],
     meta:{
-      title:'生成预算',
-      // hiden:false
+      title:'预算',
     }
   },
 
@@ -38,11 +62,32 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () => import("../views/account/login.vue"),
+    hidden:true,
     meta:{
       title:'登录',
-      hiden:true
+
     }
   },
+{
+  path:'/user',
+  name:'User',
+  meta:{
+    title:'用户管理'
+  },
+  component:()=>import("../views/layout/Index.vue"),
+  children:[
+    {
+      path:'/UserIndex',
+      name:'UserIndex',
+      meta:{
+        title:'用户列表'
+      },
+      component:()=>import("../views/user/Index.vue")
+    }
+  ]
+}
+
+
   // {
   //   path: "/about",
   //   name: "About",
